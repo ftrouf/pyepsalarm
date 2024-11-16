@@ -10,10 +10,10 @@ from pyepsalarm import EPS
 token = "MYTOKEN"
 username = "123456789"
 password = "mypassword+"
-token_pair = "MYTOKEN_PAIR"
+device_token = "MY TOKEN DEVICE"
 phone_type = "MY PHONE TYPE"
 
-eps = EPS(token, username, password, token_pair, phone_type)
+eps = EPS(token, username, password, device_token, phone_type)
 
 eps.get_status()
 eps.arm_night(silent=True)
