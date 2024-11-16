@@ -33,10 +33,12 @@ class EPS:
 
     apiURL = "https://y41hsspp-mobile.eps-api.com/"
 
-    def __init__(self, token, login, password) -> None:
+    def __init__(self, token, login, password, device_token, phone_type) -> None:
         self.token = token
         self.login = login
         self.password = password
+        self.device_token = device_token
+        self.phone_type = phone_type
 
         self.site = None
 
@@ -79,8 +81,8 @@ class EPS:
             "typeDevice": "SMARTPHONE",
             "pwd": self.password,
             "login": self.login,
-            # "originSession": self.originSession,
-            "phoneType": "",
+            "originSession": "HOMIRIS",
+            "phoneType": self.phone_type
             "codeLanguage": "FR",
             "version": "",
             "timestamp": "0",
@@ -147,6 +149,25 @@ class EPS:
         logger.info(f"Alarm status is {status}")
         return status
 
+    def get_pairing(self):
+        self._auth()
+        response = requests.get(
+            f"{self.apiURL}smartphone/production/1.0.0/peering/check/{self.session_id}/{self.device_token}",
+            headers=self.headers_api,
+        )
+        if response.status_code == 403:
+            logger.warning(
+                f"Response with status {response.status_code}: {response.text}"
+            )
+            self.session_id = None
+            return False
+        if response.status_code != 200:
+            logger.warning(
+                f"Response with status {response.status_code}: {response.text}"
+            )
+            return False
+        return True
+
     def arm_away(self, silent=False):
         self._auth()
         json_body = {
@@ -192,6 +213,10 @@ class EPS:
         return True
 
     def disarm(self, silent=False):
+        # call get_pairing 
+        if not self.get_pairing():
+            logger.warning("Pairing check failed.")
+            return False        
         self._auth()
         json_body = {"silentMode": silent, "idSession": self.session_id}
         response = requests.post(
