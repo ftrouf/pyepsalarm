@@ -84,7 +84,7 @@ class EPS:
             "originSession": "HOMIRIS",
             "phoneType": self.phone_type,
             "codeLanguage": "FR",
-            "version": "",
+            "version": "4.15.5",
             "timestamp": "0",
             "system": ""
         }
