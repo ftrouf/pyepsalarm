@@ -1,6 +1,6 @@
 from setuptools import setup
 
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -14,8 +14,8 @@ setup(
     long_description_content_type="text/markdown",
     author='Parv Arm',
     author_email='parvarm@outlook.fr',
-    url='https://github.com/parvarm/pyepsalarm',
-    download_url='https://github.com/parvarm/pyepsalarm',
+    url='https://github.com/ftrouf/pyepsalarm',
+    download_url='https://github.com/ftrouf/pyepsalarm',
     license='Apache 2.0',
     classifiers=[
       'Development Status :: 4 - Beta',
