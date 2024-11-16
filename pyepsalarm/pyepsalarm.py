@@ -82,7 +82,7 @@ class EPS:
             "pwd": self.password,
             "login": self.login,
             "originSession": "HOMIRIS",
-            "phoneType": self.phone_type
+            "phoneType": self.phone_type,
             "codeLanguage": "FR",
             "version": "",
             "timestamp": "0",
