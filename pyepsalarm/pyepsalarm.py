@@ -86,7 +86,7 @@ class EPS:
             "codeLanguage": "FR",
             "version": "",
             "timestamp": "0",
-            "system": "",
+            "system": ""
         }
         self.headers_session["Eps-Ctx-Username"] = self.login
         self.headers_api["Eps-Ctx-Username"] = self.login
